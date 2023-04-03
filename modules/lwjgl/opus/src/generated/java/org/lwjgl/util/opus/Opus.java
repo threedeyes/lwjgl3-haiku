@@ -301,7 +301,7 @@ import static org.lwjgl.system.libffi.LibFFI.*;
  */
 public class Opus {
 
-    private static final SharedLibrary OPUS = Library.loadNative(Opus.class, "org.lwjgl.opus", Configuration.OPUS_LIBRARY_NAME.get(Platform.mapLibraryNameBundled("opus")), true);
+    private static final SharedLibrary OPUS = Library.loadNative(Opus.class, "org.lwjgl.opus", Configuration.OPUS_LIBRARY_NAME, "libopus.so.0", "libopus.so");
 
     /** Contains the function pointers loaded from the opus {@link SharedLibrary}. */
     public static final class Functions {

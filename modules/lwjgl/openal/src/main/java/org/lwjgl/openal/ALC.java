@@ -62,6 +62,7 @@ public final class ALC {
     public static void create() {
         String libName;
         switch (Platform.get()) {
+            case HAIKU:
             case LINUX:
             case MACOSX:
                 libName = "openal";
@@ -116,7 +117,7 @@ public final class ALC {
      * @param libName the native library name
      */
     public static void create(String libName) {
-        SharedLibrary OPENAL = Library.loadNative(ALC.class, "org.lwjgl.openal", libName, true);
+        SharedLibrary OPENAL = Library.loadNative(ALC.class, "org.lwjgl.openal", Configuration.OPENAL_LIBRARY_NAME, "libopenal.so.1", "libopenal.so");
         try {
             create(new SharedLibraryAL(OPENAL));
         } catch (RuntimeException e) {

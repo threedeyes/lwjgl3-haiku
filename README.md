@@ -14,9 +14,10 @@ directly with the library.
 
 ## Build for Haiku x86_64 architecture:
 
-* pkgman install ant_core openjdk8_jre openjdk17 openjdk17_jre openjdk17_default assimp_devel freetype_devel glfw_devel harfbuzz_devel openal_devel opus_devel
-* export JAVA8_HOME=$JRE8_HOME
-* LWJGL_BUILD_TYPE=release LWJGL_BUILD_ARCH=x64 LWJGL_BUILD_OFFLINE=no ant init -Djavadoc.skip=true
-* LWJGL_BUILD_TYPE=release LWJGL_BUILD_ARCH=x64 LWJGL_BUILD_OFFLINE=yes ant compile-templates release -Djavadoc.skip=true
-* LWJGL_BUILD_TYPE=release LWJGL_BUILD_ARCH=x64 LWJGL_BUILD_OFFLINE=yes ant compile release -Djavadoc.skip=true
-* LWJGL_BUILD_TYPE=release LWJGL_BUILD_ARCH=x64 LWJGL_BUILD_OFFLINE=yes ant compile-native release -Djavadoc.skip=true
+* `pkgman install ant_core openjdk8_jre openjdk17 openjdk17_jre openjdk17_default assimp_devel freetype_devel glfw_devel harfbuzz_devel openal_devel opus_devel`
+* `export JAVA8_HOME=$JRE8_HOME`
+* `LWJGL_BUILD_TYPE=release LWJGL_BUILD_ARCH=x64 LWJGL_BUILD_OFFLINE=no ant init -Djavadoc.skip=true`
+* `LWJGL_BUILD_TYPE=release LWJGL_BUILD_ARCH=x64 LWJGL_BUILD_OFFLINE=yes ant compile-templates release -Djavadoc.skip=true`
+* `LWJGL_BUILD_TYPE=release LWJGL_BUILD_ARCH=x64 LWJGL_BUILD_OFFLINE=yes ant compile release -Djavadoc.skip=true`
+* `LWJGL_BUILD_TYPE=release LWJGL_BUILD_ARCH=x64 LWJGL_BUILD_OFFLINE=yes ant compile-native release -Djavadoc.skip=true`
+`

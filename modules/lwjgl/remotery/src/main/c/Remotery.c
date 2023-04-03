@@ -138,6 +138,8 @@ static rmtBool g_SettingsInitialized = RMT_FALSE;
     #ifdef RMT_PLATFORM_LINUX
         #if defined(__FreeBSD__) || defined(__OpenBSD__)
             #include <pthread_np.h>
+        #elif defined(__HAIKU__)
+            #include <pthread.h>
         #else
             #include <sys/prctl.h>
         #endif
@@ -1518,7 +1520,9 @@ static void VirtualMirrorBuffer_Destructor(VirtualMirrorBuffer* buffer)
 #define RSIZE_MAX_STR (4UL << 10) /* 4KB */
 #define RCNEGATE(x) x
 
+#ifndef __HAIKU__
 #define EOK (0)
+#endif
 #define ESNULLP (400) /* null ptr                    */
 #define ESZEROL (401) /* length is zero              */
 #define ESLEMAX (403) /* length exceeds max          */
@@ -7274,6 +7278,8 @@ static void SetDebuggerThreadName(const char* name)
     strncat_s(name_clamp, sizeof(name_clamp), name, 15);
 #if defined(__FreeBSD__) || defined(__OpenBSD__)
     pthread_set_name_np(pthread_self(), name_clamp);
+#elif defined(__HAIKU__)
+    // TODO: HAIKU implimentation
 #else
     prctl(PR_SET_NAME, name_clamp, 0, 0, 0);
 #endif

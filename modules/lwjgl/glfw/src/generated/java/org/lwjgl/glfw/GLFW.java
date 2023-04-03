@@ -27,7 +27,7 @@ import static org.lwjgl.system.MemoryUtil.*;
  */
 public class GLFW {
 
-    private static final SharedLibrary GLFW = Library.loadNative(GLFW.class, "org.lwjgl.glfw", Configuration.GLFW_LIBRARY_NAME.get(Platform.mapLibraryNameBundled("glfw")), true);
+    private static final SharedLibrary GLFW = Library.loadNative(GLFW.class, "org.lwjgl.glfw", Configuration.GLFW_LIBRARY_NAME, "libglfw.so.3", "libglfw.so");
 
     /** Contains the function pointers loaded from the glfw {@link SharedLibrary}. */
     public static final class Functions {
@@ -39,13 +39,10 @@ public class GLFW {
             Init                          = apiGetFunctionAddress(GLFW, "glfwInit"),
             Terminate                     = apiGetFunctionAddress(GLFW, "glfwTerminate"),
             InitHint                      = apiGetFunctionAddress(GLFW, "glfwInitHint"),
-            InitAllocator                 = apiGetFunctionAddress(GLFW, "glfwInitAllocator"),
             GetVersion                    = apiGetFunctionAddress(GLFW, "glfwGetVersion"),
             GetVersionString              = apiGetFunctionAddress(GLFW, "glfwGetVersionString"),
             GetError                      = apiGetFunctionAddress(GLFW, "glfwGetError"),
             SetErrorCallback              = apiGetFunctionAddress(GLFW, "glfwSetErrorCallback"),
-            GetPlatform                   = apiGetFunctionAddress(GLFW, "glfwGetPlatform"),
-            PlatformSupported             = apiGetFunctionAddress(GLFW, "glfwPlatformSupported"),
             GetMonitors                   = apiGetFunctionAddress(GLFW, "glfwGetMonitors"),
             GetPrimaryMonitor             = apiGetFunctionAddress(GLFW, "glfwGetPrimaryMonitor"),
             GetMonitorPos                 = apiGetFunctionAddress(GLFW, "glfwGetMonitorPos"),
@@ -1140,11 +1137,6 @@ public class GLFW {
 
     /** Unsafe version of: {@link #glfwInitAllocator InitAllocator} */
     public static void nglfwInitAllocator(long allocator) {
-        long __functionAddress = Functions.InitAllocator;
-        if (CHECKS) {
-            if (allocator != NULL) { GLFWAllocator.validate(allocator); }
-        }
-        invokePV(allocator, __functionAddress);
     }
 
     /**
@@ -1168,7 +1160,6 @@ public class GLFW {
      * @since version 3.4
      */
     public static void glfwInitAllocator(@Nullable @NativeType("GLFWallocator const *") GLFWAllocator allocator) {
-        nglfwInitAllocator(memAddressSafe(allocator));
     }
 
     // --- [ glfwGetVersion ] ---
@@ -1337,8 +1328,7 @@ public class GLFW {
      * @since version 3.4
      */
     public static int glfwGetPlatform() {
-        long __functionAddress = Functions.GetPlatform;
-        return invokeI(__functionAddress);
+        return 0;
     }
 
     // --- [ glfwPlatformSupported ] ---
@@ -1362,8 +1352,7 @@ public class GLFW {
      */
     @NativeType("int")
     public static boolean glfwPlatformSupported(int platform) {
-        long __functionAddress = Functions.PlatformSupported;
-        return invokeI(platform, __functionAddress) != 0;
+        return true;
     }
 
     // --- [ glfwGetMonitors ] ---

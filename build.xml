@@ -226,6 +226,7 @@
             <src path="${core.kotlin.path}/libc"/>
             <src path="${core.kotlin.path}/libffi"/>
             <src path="${core.kotlin.path}/linux"/>
+            <src path="${core.kotlin.path}/haiku"/>
             <src path="${core.kotlin.path}/macos"/>
             <src path="${core.kotlin.path}/templates"/>
             <src path="${core.kotlin.path}/windows"/>
@@ -1181,6 +1182,9 @@
             </condition>
 
             <parallel threadsPerProcessor="4" failonany="true">
+                <get-release platform="haiku" arch="x64" file="lib@{native-library}.so" if:set="auto-natives"/>
+                <get-release platform="haiku" arch="x64" file="lib@{native-library}.so.git" if:set="git-revision"/>
+
                 <get-release platform="linux" arch="x64" file="lib@{native-library}.so" if:set="auto-natives"/>
                 <get-release platform="linux" arch="x64" file="lib@{native-library}.so.git" if:set="git-revision"/>
 
@@ -1248,6 +1252,9 @@
 
                 <!-- Create native jar files -->
                 <parallel threadsPerProcessor="1" failonany="true">
+                    <natives-jar name="@{name}" title="@{title}" platform="haiku" path="haiku/x64" type="so">
+                        <haiku-content/>
+                    </natives-jar>
                     <natives-jar name="@{name}" title="@{title}" platform="linux" path="linux/x64" type="so">
                         <linux-content/>
                     </natives-jar>
@@ -1282,6 +1289,7 @@
         <attribute name="title"/>
         <attribute name="native-library" default=""/>
         <element name="natives" optional="true"/>
+        <element name="haiku" optional="true"/>
         <element name="linux" optional="true"/>
         <element name="linux-arm64" optional="true"/>
         <element name="linux-arm32" optional="true"/>
@@ -1309,6 +1317,7 @@
             <!-- Bundle natives -->
             <release-natives name="@{name}" title="@{title}" native-library="@{native-library}" unless:set="java-only.binding.@{name}">
                 <content><natives/></content>
+                <haiku-content><haiku/></haiku-content>
                 <linux-content><linux/></linux-content>
                 <linux-arm64-content><linux-arm64/></linux-arm64-content>
                 <linux-arm32-content><linux-arm32/></linux-arm32-content>

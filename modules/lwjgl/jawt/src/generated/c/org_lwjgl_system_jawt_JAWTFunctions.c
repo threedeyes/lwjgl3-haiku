@@ -5,7 +5,9 @@
  */
 #include "common_tools.h"
 DISABLE_WARNINGS()
+#ifndef __HAIKU__
 #include "jawt_md.h"
+#endif
 ENABLE_WARNINGS()
 #ifndef APIENTRY
     #define APIENTRY

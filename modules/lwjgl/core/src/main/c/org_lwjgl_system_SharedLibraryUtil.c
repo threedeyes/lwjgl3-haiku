@@ -59,7 +59,9 @@
 #  define OS_NDS
 #elif defined(__psp__) || defined(PSP)
 #  define OS_PSP
-#elif defined(__HAIKU__) || defined(__BEOS__)
+#elif defined(__HAIKU__)
+#  define OS_Haiku
+#elif defined(__BEOS__)
 #  define OS_BeOS
 #elif defined(Plan9) || defined(__Plan9__)
 #  define OS_Plan9
@@ -238,7 +240,7 @@ EXTERN_C_EXIT
    - also some libc impls (like musl) provide dlinfo(), but not RTLD_SELF (see above), however they might come
      with dl_iterate_phdr (which comes from ELF program header iteration), so base it on that
    - skip and use dladdr()-based guessing (see below) if explicitly requested, e.g. by ./configure */
-#elif !defined(DL_DLADDR_TO_LIBPATH) && (defined(OS_OpenBSD) || defined(DL_USE_GLIBC_ITER_PHDR) || (!defined(RTLD_SELF) && defined(__ELF__)))
+#elif !defined(DL_DLADDR_TO_LIBPATH) && (defined(OS_OpenBSD) || defined(DL_USE_GLIBC_ITER_PHDR) || (!defined(RTLD_SELF) && defined(__ELF__))) && !defined(OS_Haiku)
 
 #include <sys/types.h>
 #include <link.h>

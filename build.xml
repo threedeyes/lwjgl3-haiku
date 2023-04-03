@@ -1018,6 +1018,7 @@
 
     <target name="upload-native" description="Uploads native build artifacts to build.lwjgl.org" depends="compile-native,-check-AWS-credentials">
         <local name="revision"/>
+        <property name="revision" value="liblwjgl.so.git" if:set="platform.haiku"/>
         <property name="revision" value="liblwjgl.so.git" if:set="platform.linux"/>
         <property name="revision" value="liblwjgl.dylib.git" if:set="platform.macos"/>
         <property name="revision" value="lwjgl.dll.git" if:set="platform.windows"/>
@@ -1155,6 +1156,7 @@
         <attribute name="title"/>
         <attribute name="native-library"/>
         <element name="content" optional="true"/>
+        <element name="haiku-content" optional="true"/>
         <element name="linux-content" optional="true"/>
         <element name="linux-arm64-content" optional="true"/>
         <element name="linux-arm32-content" optional="true"/>
@@ -1499,6 +1501,10 @@
         <!-- Assimp -->
         <release-module name="assimp" title="assimp" if:true="${binding.assimp}">
             <natives>
+                <get-release platform="haiku" arch="x64" file="libassimp.so"/>
+                <get-release platform="haiku" arch="x64" file="libassimp.so.git"/>
+                <get-release platform="haiku" arch="x64" file="libdraco.so"/>
+
                 <get-release platform="linux" arch="x64" file="libassimp.so"/>
                 <get-release platform="linux" arch="x64" file="libassimp.so.git"/>
                 <get-release platform="linux" arch="x64" file="libdraco.so"/>
@@ -1574,6 +1580,9 @@
         <!-- GLFW -->
         <release-module name="glfw" title="GLFW" if:true="${binding.glfw}">
             <natives>
+                <get-release platform="haiku" arch="x64" file="libglfw.so"/>
+                <get-release platform="haiku" arch="x64" file="libglfw.so.git"/>
+
                 <get-release platform="linux" arch="x64" file="libglfw.so"/>
                 <get-release platform="linux" arch="x64" file="libglfw.so.git"/>
 
@@ -1662,6 +1671,9 @@
         <!-- OpenAL -->
         <release-module name="openal" title="OpenAL" if:true="${binding.openal}">
             <natives>
+                <get-release platform="haiku" arch="x64" file="libopenal.so"/>
+                <get-release platform="haiku" arch="x64" file="libopenal.so.git"/>
+
                 <get-release platform="linux" arch="x64" file="libopenal.so"/>
                 <get-release platform="linux" arch="x64" file="libopenal.so.git"/>
 

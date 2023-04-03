@@ -9,6 +9,7 @@ import org.lwjgl.system.libffi.*;
 import org.lwjgl.system.linux.*;
 import org.lwjgl.system.macosx.*;
 import org.lwjgl.system.windows.*;
+import org.lwjgl.system.haiku.*;
 
 import javax.annotation.*;
 import java.io.*;
@@ -126,6 +127,8 @@ public final class APIUtil {
                 return new WindowsLibrary(name);
             case LINUX:
                 return new LinuxLibrary(name);
+            case HAIKU:
+                return new HaikuLibrary(name);
             case MACOSX:
                 return MacOSXLibrary.create(name);
             default:

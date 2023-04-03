@@ -33,6 +33,11 @@ enum class Module(
         conventions. This allows a programmer to call any function specified by a call interface description at run-time.
         """
     ),
+    CORE_HAIKU(
+        "core.haiku",
+        "org.lwjgl.system.haiku",
+        "Contains bindings to native APIs specific to the Haiku operating system."
+    ),
     CORE_LINUX(
         "core.linux",
         "org.lwjgl.system.linux",

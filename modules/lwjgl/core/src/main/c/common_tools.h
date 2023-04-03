@@ -13,6 +13,9 @@
 #ifdef LWJGL_MACOS
     #include "macOSConfig.h"
 #endif
+#ifdef LWJGL_HAIKU
+    #include "HaikuConfig.h"
+#endif
 
 DISABLE_WARNINGS()
 #include <jni.h>

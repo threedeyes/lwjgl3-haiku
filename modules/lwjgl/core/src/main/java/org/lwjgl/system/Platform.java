@@ -25,6 +25,18 @@ public enum Platform {
             return System.mapLibraryName(name);
         }
     },
+    HAIKU("Haiku", "haiku") {
+        private final Pattern SO = Pattern.compile("(?:^|/)lib\\w+[.]so(?:[.]\\d+)*$");
+
+        @Override
+        String mapLibraryName(String name) {
+            if (SO.matcher(name).find()) {
+                return name;
+            }
+
+            return System.mapLibraryName(name);
+        }
+    },
     // TODO: Rename to MACOS in LWJGL 4
     MACOSX("macOS", "macos") {
         private final Pattern DYLIB = Pattern.compile("(?:^|/)lib\\w+(?:[.]\\d+)*[.]dylib$");
@@ -87,6 +99,8 @@ public enum Platform {
             current = LINUX;
         } else if (osName.startsWith("Mac OS X") || osName.startsWith("Darwin")) {
             current = MACOSX;
+        } else if (osName.startsWith("Haiku")) {
+            current = HAIKU;
         } else {
             throw new LinkageError("Unknown platform: " + osName);
         }

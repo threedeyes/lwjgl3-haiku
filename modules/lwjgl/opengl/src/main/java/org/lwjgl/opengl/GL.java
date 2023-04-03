@@ -8,6 +8,7 @@ import org.lwjgl.*;
 import org.lwjgl.system.*;
 import org.lwjgl.system.macosx.*;
 import org.lwjgl.system.windows.*;
+import org.lwjgl.system.haiku.*;
 
 import javax.annotation.*;
 import java.nio.*;
@@ -105,6 +106,9 @@ public final class GL {
                 break;
             case WINDOWS:
                 GL = Library.loadNative(GL.class, "org.lwjgl.opengl", Configuration.OPENGL_LIBRARY_NAME, "opengl32");
+                break;
+            case HAIKU:
+                GL = Library.loadNative(GL.class, "org.lwjgl.opengl", Configuration.OPENGL_LIBRARY_NAME, "libGL.so.1", "libGL.so");
                 break;
             default:
                 throw new IllegalStateException();

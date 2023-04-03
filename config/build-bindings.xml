@@ -55,10 +55,13 @@ This script is included in /config/build-definitions.xml.
     <property name="binding.opus" value="true"/>
     <property name="binding.par" value="true"/>
     <condition property="binding.remotery" value="false" else="true">
+    <or>
+        <isset property="platform.haiku"/>
         <and>
             <isset property="platform.windows"/>
             <isset property="build.arch.arm"/>
         </and>
+    </or>
     </condition>
     <property name="binding.rpmalloc" value="true"/>
     <property name="binding.shaderc" value="true"/>

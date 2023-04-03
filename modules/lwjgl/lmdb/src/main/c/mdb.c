@@ -142,7 +142,7 @@ typedef SSIZE_T	ssize_t;
 #if defined(__FreeBSD__) && defined(__FreeBSD_version) && __FreeBSD_version >= 1100110
 # define MDB_USE_POSIX_MUTEX	1
 # define MDB_USE_ROBUST	1
-#elif defined(__APPLE__) || defined (BSD) || defined(__FreeBSD_kernel__)
+#elif defined(__APPLE__) || defined (BSD) || defined(__FreeBSD_kernel__) || defined(__HAIKU__)
 # define MDB_USE_POSIX_SEM	1
 # define MDB_FDATASYNC		fsync
 #elif defined(ANDROID)
